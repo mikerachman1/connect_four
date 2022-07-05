@@ -63,9 +63,9 @@ describe ConnectFour do
       end
     
       it 'Updates game board array accordingly' do
-        row = 1
+        column = 1
         board = game_board.board
-        expect { game_board.update_board(row) }.to change { board[0].length }.by(1) 
+        expect { game_board.update_board(column) }.to change { board[0].length }.by(1) 
       end
     end
 
@@ -77,9 +77,9 @@ describe ConnectFour do
       end
       
       it 'Updates game board array accordingly' do
-        row = 2
+        column = 2
         board = game_board.board
-        game_board.update_board(row)
+        game_board.update_board(column)
         expect(board[1][2]).to eq('O') 
       end 
     end
@@ -89,22 +89,22 @@ describe ConnectFour do
 
     subject(:game_verify) { described_class.new }
 
-    context 'valid move, empty spaces in row' do
+    context 'valid move, empty spaces in column' do
       it 'returns input' do
-        row = 1
-        expect(game_verify.verify_input(row)).to eq(row)
+        column = 1
+        expect(game_verify.verify_input(column)).to eq(column)
       end
     end
 
-    context 'invalid move, spaces full in row' do
+    context 'invalid move, spaces full in column' do
 
       before do
         game_verify.instance_variable_set(:@board, [['X', 'O', 'X', 'O', 'X', 'O'], [], [], [], [], [], []])
       end
 
       it 'returns nil' do
-        row = 1
-        expect(game_verify.verify_input(row)).to be_nil
+        column = 1
+        expect(game_verify.verify_input(column)).to be_nil
       end
     end
   end
@@ -138,7 +138,7 @@ describe ConnectFour do
     end
   end
 
-  define '#game_over?' do
+  describe '#game_over?' do
 
     subject(:game_end) { described_class.new }
 
@@ -149,7 +149,7 @@ describe ConnectFour do
       end
       
       it 'returns true' do
-        expect(game_end.game_over?).to be_true
+        expect(game_end.game_over?).to be true
       end
     end
 
@@ -160,7 +160,7 @@ describe ConnectFour do
       end
 
       it 'returns true' do
-        expect(game_end.game_over?).to be_true
+        expect(game_end.game_over?).to be true
       end
     end
 
@@ -171,14 +171,14 @@ describe ConnectFour do
       end
 
       it 'returns true' do
-        expect(game_end.game_over?).to be_true
+        expect(game_end.game_over?).to be true
       end
     end
 
     context 'game isnt over' do
         
       it 'returns false' do
-        expect(game_end.game_over?).to be_false
+        expect(game_end.game_over?).to be false
       end
     end
   end
