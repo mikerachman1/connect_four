@@ -3,7 +3,7 @@ class ConnectFour
 
   def initialize
     @board = Array.new(7) { Array.new }
-    @turn = 2
+    @turn = rand(1..2)
   end
 
   def player_input
@@ -26,10 +26,9 @@ class ConnectFour
   end
 
   def change_turn
-    turn == 1 ? @turn = 2 : @turn = 1
+    @turn == 1 ? @turn = 2 : @turn = 1
   end
 end
 
- game = ConnectFour.new
- game.change_turn
- p game.turn
+#  game = ConnectFour.new
+# game.update_board(1)

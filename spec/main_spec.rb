@@ -137,4 +137,49 @@ describe ConnectFour do
       end
     end
   end
+
+  define '#game_over?' do
+
+    subject(:game_end) { described_class.new }
+
+    context 'horizontal connect 4' do
+      
+      before do
+        game_end.instance_variable_set(:@board, [['X'], ['X'], ['X'], ['X'], [], [], []])
+      end
+      
+      it 'returns true' do
+        expect(game_end.game_over?).to be_true
+      end
+    end
+
+    context 'vertical connect 4' do
+
+      before do
+        game_end.instance_variable_set(:@board, [['X', 'X', 'X', 'X'], [], [], [], [], [], []])
+      end
+
+      it 'returns true' do
+        expect(game_end.game_over?).to be_true
+      end
+    end
+
+    context 'diagonal connect 4' do
+
+      before do
+        game_end.instance_variable_set(:@board, [['X'], ['O', 'X'], ['O', 'O', 'X'], ['O', 'O', 'O', 'X'], [], [], []])
+      end
+
+      it 'returns true' do
+        expect(game_end.game_over?).to be_true
+      end
+    end
+
+    context 'game isnt over' do
+        
+      it 'returns false' do
+        expect(game_end.game_over?).to be_false
+      end
+    end
+  end
 end
