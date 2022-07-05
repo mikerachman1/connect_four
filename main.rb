@@ -7,6 +7,16 @@ class ConnectFour
   end
 
   def play_game
+    introduction
+    until game_over? == true
+      puts 'Enter a number between 1 and 7'
+      input = player_input
+      move = verify_input(input)
+      update_board(move)
+      display_board
+      change_turn
+    end
+    puts 'GAME OVER'
   end
 
   def player_input
@@ -86,7 +96,35 @@ class ConnectFour
     end
     false
   end
+  
+  def introduction
+    puts "Lets play Connect 4!\nPlayer one will be (X)\nPlayer 2 will be (O)"
+    if turn == 1
+      puts 'Player 1 goes first'
+    else
+      puts 'Player 2 goes first'
+    end
+  end
+
+  def display_board
+    rows = [[], [], [], [], [], []]
+    board.each do |column|
+      rows[0] << column[0]
+      rows[1] << column[1]
+      rows[2] << column[2]
+      rows[3] << column[3]
+      rows[4] << column[4]
+      rows[5] << column[5]
+    end
+    p rows[5]
+    p rows[4]
+    p rows[3]
+    p rows[2]
+    p rows[1]
+    p rows[0]
+  end
+
 end
 
-#  game = ConnectFour.new
-# game.update_board(1)
+# game = ConnectFour.new
+# game.play_game
